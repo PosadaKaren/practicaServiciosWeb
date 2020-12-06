@@ -1,0 +1,30 @@
+{
+  "name": "practica-servicios-web",
+  "version": "1.0.0",
+  "description": "practica servicios web usando API REST",
+  "main": "aplicacion.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.11.4",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PosadaKaren/practicaServiciosWeb.git"
+  },
+  "keywords": [
+    "REST",
+    "NODEJS"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PosadaKaren/practicaServiciosWeb/issues"
+  },
+  "homepage": "https://github.com/PosadaKaren/practicaServiciosWeb#readme"
+}
