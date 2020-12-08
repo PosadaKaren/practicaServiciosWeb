@@ -13,6 +13,4 @@ genero: {type: String, enum:
 
 module.exports = mongoose.model('Libros',schemaLibro);
 
-//sigue la conexión
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/libros');
+

@@ -16,8 +16,27 @@ router.get('/', function(req,res){
 
 app.use(router);
 
-app.listen(3000,function(){
-    console.log("servidor corriendo en el puerto: 3000");
-
+mongoose.connect('mongodb://localhost/Libros', function(err,res) {
+    if(err){
+        console.log('Error: F la conexión ' + err);
+    }
+    app.listen(3000,function(){
+        console.log('Corriendo en el puerto 3000');
+    });
 });
 
+
+// rutas de la api
+var librosCtrl = require('./controllers/librosr');
+var librosr = express.Router();
+
+librosr.route('/librosr')
+    .get(librosCtrl.findAllLibros)
+    .post(librosCtrl.addLibro);
+
+librosr.route('/librosr/:id')
+    .get(librosCtrl.findById)
+    .put(librosCtrl.actualizarLibro)
+    .delete(librosCtrl.borrarLibro);
+
+app.use('/api',librosr);
