@@ -1,0 +1,17 @@
+{
+    "titulo" :  "Calculus",
+    "año" : 2002,
+    "portada" : "./imagenes/calculo-tomApostol.jpg",
+    "editorial" : "Reverte",
+    "autor" : "Tom M. Aposol",
+    "genero" : "Academico"
+},
+{
+    "titulo" :  "El misterioso caso de Styles,",
+    "año" : 296,
+    "portada" : "./imagenes/ElmisteriosocasodeStyles-Agatha.jpeg",
+    "editorial" : "Espasa",
+    "autor" : "Agatha Christie",
+    "genero" : "Policias"
+}
+

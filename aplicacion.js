@@ -4,30 +4,29 @@ var express = require("express"), //usamos express para crear el servidor
     methodOverride = require("method-override"); //implementar los métodos http
     mongoose = require('mongoose');
 
+//para la base
+mongoose.connect('mongodb://localhost/libros', function(err, res) {
+    if(err) throw err;
+    console.log('Connected to Database');
+});
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(methodOverride());
 
-var router = express.Router();
+//el modelo de la BD y elcontrolador
+var models = require('./model/Libros')(app,mongoose);
+var librosCtrl = require('./controllers/librosr');
 
+var router = express.Router();
 router.get('/', function(req,res){
     res.send('funciono :)'); //petición get del navegador
 });
-
 app.use(router);
-
-mongoose.connect('mongodb://localhost/Libros', function(err,res) {
-    if(err){
-        console.log('Error: F la conexión ' + err);
-    }
-    app.listen(3000,function(){
-        console.log('Corriendo en el puerto 3000');
-    });
-});
 
 
 // rutas de la api
-var librosCtrl = require('./controllers/librosr');
+
 var librosr = express.Router();
 
 librosr.route('/librosr')
@@ -40,3 +39,8 @@ librosr.route('/librosr/:id')
     .delete(librosCtrl.borrarLibro);
 
 app.use('/api',librosr);
+
+//comenzar el servidor
+app.listen(3000, function(){
+    console.log('Servidor corriendo en el puerto 3000')
+});

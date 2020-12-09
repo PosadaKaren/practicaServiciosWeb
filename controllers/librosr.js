@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
-var libros = mongoose.model('Libros');
+var Libros = mongoose.model('Libros');
 
-//retornarn los libros de la BD
+//retornarn los Libros de la BD
 exports.findAllLibros = function(req,res){
-    libros.find(function(err,variosLibros){
+    Libros.find(function(err,variosLibros){
         if (err) res.send(500, err.mesage);
 
             console.log('GET/variosLibros');
@@ -13,7 +13,7 @@ exports.findAllLibros = function(req,res){
 
 
 exports.findById = function(req,res) {
-    libros.findById(req.params.id , function(err, unLibro) {
+    Libros.findById(req.params.id , function(err, unLibro) {
     if(err) return res.send(500, err.mesage);
 
     console.log('GET /unLibro/' + req.params.id);
@@ -26,7 +26,7 @@ exports.addLibro = function(req,res){
     console.log('POST');
     console.log(req.body);
 
-    var librosagg = new libros({
+    var librosagg = new Libros({
         titulo: req.body.titulo,
         año: req.body.año,
         portada: req.body.portada,
@@ -35,14 +35,14 @@ exports.addLibro = function(req,res){
         genero: req.body.genero
     });
 
-    libros.save(function(err, libros){
+    librosagg.save(function(err, Libros){
         if(err) return res.status(500).send( err.mesage);
-    res.status(200).jsonp(libros);
+    res.status(200).jsonp(Libros);
     });
 };
 
 exports.actualizarLibro = function(req,res) {
-    libros.findById(req.params.id, function(err, unLibro){
+    Libros.findById(req.params.id, function(err, unLibro){
         unLibro.titulo = req.body.petId;
         unLibro.año = req.body.año;
         unLibro.portada = req.body.portada;
@@ -58,8 +58,8 @@ exports.actualizarLibro = function(req,res) {
 };
 
 exports.borrarLibro = function(req,res) {
-    libros.findById(req.params.id, function(err,unLibro){
-        libros.remove(function(err){
+    Libros.findById(req.params.id, function(err,unLibro){
+        Libros.remove(function(err){
             if(err) return res.status(500),send(err.mesage);
 
     res.status(200).send();
